@@ -350,6 +350,9 @@ function printNoParens(path, options, print) {
     case "GotoStatement": {
       return concat(["goto ", path.call(print, "label")]);
     }
+    case "ContinueStatement": {
+      return "continue"
+    }
   }
 
   return "";

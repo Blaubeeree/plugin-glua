@@ -26,6 +26,7 @@ function isKeyword(str) {
     case "repeat":
     case "return":
     case "function":
+    case "continue":
       return true;
     default:
       return false;

@@ -14,20 +14,20 @@ const {
 
 const languages = [
   {
-    name: "Lua",
-    parsers: ["lua"],
+    name: "GLua",
+    parsers: ["glua"],
     tmScope: "source.lua",
     aceMode: "lua",
     codemirrorMode: "lua",
     extensions: [".lua", ".fcgi", ".nse", ".p8", ".pd_lua", ".rbxs", ".wlua"],
     filenames: [],
-    vscodeLanguageIds: ["lua"],
+    vscodeLanguageIds: ["glua"],
     linguistLanguageId: 213,
   },
 ];
 
 const parsers = {
-  lua: {
+  glua: {
     parse,
     astFormat: "luaparse",
     locStart: function locStart(node) {

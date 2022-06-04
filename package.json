@@ -1,8 +1,8 @@
 {
-  "name": "@prettier/plugin-lua",
+  "name": "@prettier/plugin-glua",
   "version": "0.0.1",
   "description": "Prettier Lua Plugin",
-  "repository": "prettier/plugin-lua",
+  "repository": "Blaubeeree/plugin-glua",
   "author": "Suchipi <me@suchipi.com>",
   "license": "MIT",
   "main": "src",
@@ -13,7 +13,7 @@
     "src"
   ],
   "dependencies": {
-    "luaparse": "0.2.1"
+    "gluaparse": "git+https://github.com/everyday-as/glua.js"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
@@ -39,4 +39,3 @@
     ]
   }
 }
-

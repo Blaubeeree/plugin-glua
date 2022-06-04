@@ -1,10 +1,10 @@
 "use strict";
-const luaparse = require("luaparse");
+const gluaparse = require("gluaparse");
 
 function parse(text, parsers, options) {
-  return luaparse.parse(text, {
+  return gluaparse.parse(text, {
     ranges: true,
-    luaVersion: "5.3",
+    luaVersion: "5.1",
   });
 }
 
