@@ -210,6 +210,13 @@ function printNoParens(path, options, print) {
       }
     }
     case "LogicalExpression":
+      return concat([
+        path.call(print, "left"),
+        " ",
+        node.operator,
+        line,
+        path.call(print, "right"),
+      ]);
     case "BinaryExpression": {
       return concat([
         path.call(print, "left"),
@@ -235,8 +242,7 @@ function printNoParens(path, options, print) {
       return concat([
         node.type === "ElseifClause" ? "else" : "",
         "if ",
-        path.call(print, "condition"),
-        " then",
+        group([indent(path.call(print, "condition")), line, "then"]),
         willBreak(printedBody) ? breakParent : " ",
         printedBody,
       ]);
@@ -351,7 +357,7 @@ function printNoParens(path, options, print) {
       return concat(["goto ", path.call(print, "label")]);
     }
     case "ContinueStatement": {
-      return "continue"
+      return "continue";
     }
   }
 
@@ -364,14 +370,19 @@ function printIndentedBody(path, options, print) {
     node.body.length > 0 ||
     (node.comments && node.comments.filter(isDanglingComment).length > 0);
 
-  const isSimpleReturn =
+  const simpleStatements = [
+    "ReturnStatement",
+    "BreakStatement",
+    "ContinueStatement",
+  ];
+  const isSimpleStatement =
     node.type === "IfClause" &&
     node.body.length === 1 &&
-    node.body[0].type === "ReturnStatement" &&
+    simpleStatements.includes(node.body[0].type) &&
     (node.body[0].comments == null || node.body[0].comments.length === 0) &&
-    node.body[0].arguments.length === 0;
+    (node.body[0].arguments == null || node.body[0].arguments.length === 0);
 
-  if (isSimpleReturn) {
+  if (isSimpleStatement) {
     return printBody(path, options, print);
   } else {
     return hasContent
